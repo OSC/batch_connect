@@ -261,14 +261,14 @@ my_script = BatchConnect::Scripts::VNC.new(name: "my_vnc", geometry: "1024x768")
 
 Possible options that developers may be interested in:
 
-| option        | description                                                                              |
-| ------        | -----------                                                                              |
-| `:vnc_mod`    | The VNC module to load that sets up the VNC server environment (default: `turbovnc/2.0`) |
-| `:name`       | Name of the VNC session (default: "vnc")                                                 |
-| `:geometry`   | Resolution of VNC session (default: "800x600")                                           |
-| `:dpi`        | DPI of VNC session (default: "96")                                                       |
-| `:fonts`      | Comma delimited list of fonts to use in VNC session (default: "")                        |
-| `:idle`       | The idle timeout of VNC session in seconds (default: "0", session runs until walltime)   |
+| option      | description                                                                                 |
+| ------      | -----------                                                                                 |
+| `:vnc_mod`  | The VNC module to load that sets up the VNC server environment (default: `turbovnc/2.0.91`) |
+| `:name`     | Name of the VNC session (default: "vnc")                                                    |
+| `:geometry` | Resolution of VNC session (default: "800x600")                                              |
+| `:dpi`      | DPI of VNC session (default: "96")                                                          |
+| `:fonts`    | Comma delimited list of fonts to use in VNC session (default: "")                           |
+| `:idle`     | The idle timeout of VNC session in seconds (default: "0", session runs until walltime)      |
 
 ## Contributing
 

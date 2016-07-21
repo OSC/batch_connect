@@ -48,7 +48,7 @@ module BatchConnect
       # @param fonts [#to_s] fonts used in vnc session
       # @param idle [#to_s] idle timeout of vnc session
       # @param novnc_bin [#to_s] novnc binary file
-      def initialize(vnc_mod: "turbovnc/2.0", vnc_passwd: "${PBS_JOBID}.pass",
+      def initialize(vnc_mod: "turbovnc/2.0.91", vnc_passwd: "${PBS_JOBID}.pass",
                      vnc_log: "$PBS_JOBID.log", name: "vnc",
                      geometry: "800x600", dpi: "96", fonts: "", idle: "0",
                      novnc_bin: "/usr/local/novnc/utils/launch.sh", **kwargs)
@@ -212,7 +212,7 @@ module BatchConnect
 
         # Use a password file for VNC authentication
         def auth_args
-          "-nootp -nopam -rfbauth \"#{vnc_passwd}\""
+          "-rfbauth \"#{vnc_passwd}\""
         end
 
         # No Java http server for VNC session
