@@ -65,6 +65,8 @@ module BatchConnect
         @novnc_bin  = novnc_bin.to_s
       end
 
+      # Before running the main script, start up a VNC server and record the
+      # connection information
       # @see Script#before
       def before
         <<-END.gsub(/^ {10}/, '')
@@ -117,6 +119,8 @@ module BatchConnect
         END
       end
 
+      # After starting up the main script, scan the VNC server log file for
+      # successful connections so that the password can be reset
       # @see Script#after
       def after
         <<-END.gsub(/^ {10}/, '')
@@ -137,6 +141,7 @@ module BatchConnect
         END
       end
 
+      # Clean up the running VNC server and any other stale VNC servers
       # @see Script#clean
       def clean
         # this is indented by two spaces
@@ -147,11 +152,13 @@ module BatchConnect
         END
       end
 
+      # We need to know the VNC and websockify connection information as well
       # @see Script#params
       def params
         (super + [:display, :websocket, :password, :spassword]).uniq
       end
 
+      # Run the script under the VNC server display
       # @see Script#run_script
       def run_script
         %[DISPLAY=:${display} #{super}]
