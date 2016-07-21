@@ -1,0 +1,41 @@
+# Export all variables and function created/modified
+set -a
+
+cd "${PBS_O_WORKDIR}"
+
+# Generate a yaml file with given parameters
+function create_yml () {
+  echo "Generating YAML file..."
+  > "{{{yml}}}"
+  {{#params}}
+  echo "{{.}}: '${{.}}'" >> "{{{yml}}}"
+  {{/params}}
+  chmod 600 "{{{yml}}}"
+}
+
+# Cleanliness is next to Godliness
+function clean_up () {
+  echo "Cleaning up..."
+  {{{clean}}}
+  pkill -P $$
+  exit ${1:-0}
+}
+
+{{> _bash_helpers}}
+
+{{{before}}}
+
+echo "Script starting..."
+{{{run_script}}} &
+SCRIPT_PID=$!
+
+{{{after}}}
+
+# Create the yaml file
+create_yml
+
+# Wait for process to finish
+wait ${SCRIPT_PID} || clean_up 1
+
+# Exit cleanly
+clean_up

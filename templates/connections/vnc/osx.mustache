@@ -1,0 +1,1 @@
+ssh -f -N -L {{local_port}}:{{host}}:{{port}} {{ssh_user}}@{{ssh_host}} && open vnc://:{{password}}@localhost:{{local_port}}
