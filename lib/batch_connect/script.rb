@@ -45,7 +45,7 @@ module BatchConnect
                    before: "host=$(hostname)\n[[ -e before.sh ]] && source before.sh",
                    after:  "[[ -e after.sh  ]] && source after.sh",
                    clean:  "[[ -e clean.sh  ]] && source clean.sh",
-                   params: [])
+                   params: [], **_)
       self.template_name = 'bash'
 
       @script = script.to_s
